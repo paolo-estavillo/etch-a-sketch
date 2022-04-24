@@ -15,22 +15,20 @@ function darkenBackgroundColor(e) {
     this.style['background-color'] = `rgb(${r}, ${g}, ${b})`;
 }
 
-// Create the boxes
-
 function resetGrid(gridSize) {
-    // reset the boxes
+    // Reset the grid
     let grid = document.querySelector('.grid');
     grid.parentElement.removeChild(grid);
-
     grid = document.createElement('div');
     grid.classList.add('grid');
-    // container.style['display'] = "flex";
 
+    // Construct the boxes
     for (let i = 0; i < gridSize; ++i) {
         let row = document.createElement('div');
         row.classList.add('row');
         row.style['display'] = "flex";
 
+        // Set the box size in pixels
         let boxSize = Math.floor(960/gridSize);
         for (let j = 0; j < gridSize; ++j) {
             let box = document.createElement('div');
@@ -47,23 +45,21 @@ function resetGrid(gridSize) {
         grid.appendChild(row);
     }
 
+    // Add the grid to the body
     let bod = document.querySelector('body');
-
-    // bod.appendChild(container);
     bod.appendChild(grid);
 
+    // Add the event listeners for each box
     let boxes = document.querySelectorAll('.row .box');
-
     boxes.forEach(box => {
         box.addEventListener('mouseenter', darkenBackgroundColor);
     });
 }
 
+// Initialize the grid
 resetGrid(16);
 
-function checkInput(str) {
-    // str = str.trim();
-    // const arr = Array.from(str);
+function checkValidInput(str) {
     let valid = true;
     const ASCII_0 = "0".charCodeAt(0), ASCII_9 = "9".charCodeAt(0);
 
@@ -86,13 +82,12 @@ function checkInput(str) {
 function inputHandler(e) {
     let inp = document.querySelector('.inputHeader input');
     inp.value = inp.value.trim();
-    // console.log(checkInput(inp.value));
 
-    if (checkInput(inp.value)) {
+    if (checkValidInput(inp.value)) {
         resetGrid(Number(inp.value));
     }
 }
 
+// Accept inputs when user clicks the button
 let button = document.querySelector('.inputHeader button');
-
 button.addEventListener('click', inputHandler);
