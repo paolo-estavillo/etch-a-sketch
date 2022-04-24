@@ -75,10 +75,6 @@ function resetGrid(gridSize) {
 // Initialize the grid
 resetGrid(16);
 
-// Initialize the input
-let inp = document.querySelector('.inputHeader input');
-inp.value = '16';
-
 function checkValidInput(str) {
     let valid = true;
     const ASCII_0 = "0".charCodeAt(0), ASCII_9 = "9".charCodeAt(0);
@@ -122,5 +118,7 @@ function pressHandler(e) {
 let button = document.querySelector('.inputHeader button');
 button.addEventListener('click', clickHandler);
 
+// Initialize the input
 let inp = document.querySelector('.inputHeader input');
+inp.value = '16';
 inp.addEventListener('keyup', pressHandler);
