@@ -15,6 +15,7 @@ function darkenBackgroundColor(e) {
     this.style['background-color'] = `rgb(${r}, ${g}, ${b})`;
 }
 
+// Create the boxes
 
 function resetGrid(gridSize) {
     // reset the boxes
