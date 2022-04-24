@@ -1,5 +1,8 @@
 function darkenBackgroundColor(e) {
 
+    if (!(e.buttons > 0))
+        return;
+
     let bg = this.style['background-color'];
 
     bg = bg ?? `rgb(0, 0, 0)`;
@@ -22,6 +25,9 @@ function resetGrid(gridSize) {
     grid.parentElement.removeChild(grid);
     grid = document.createElement('div');
     grid.classList.add('grid');
+    grid.setAttribute('draggable', 'false');
+    // grid.innerHTML = '';
+    grid.setAttribute('unselectable', 'on');
 
     // Construct the grid row-by-row
     for (let i = 0; i < gridSize; ++i) {
@@ -45,9 +51,13 @@ function resetGrid(gridSize) {
             box.style['border'] = "2px solid #000";
             box.style["height"] = `${boxSize}px`;
             box.style["width"] = `${boxSize}px`;
+            // box.innerHTML = '';
+            box.setAttribute('draggable', 'false');
+            box.setAttribute('unselectable', 'on');
 
             // Define the event listener as well
             box.addEventListener('mouseenter', darkenBackgroundColor);
+            box.addEventListener('mousedown', darkenBackgroundColor);
 
             // Append the box to the row
             row.appendChild(box);
